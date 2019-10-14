@@ -12,19 +12,12 @@
 	<h1>Bienvenido JSF Etrivino</h1>
 	<h3>Obtener cantidad de pasos mínima</h3>
 	<h:form>
-		<table>
-			<tr>
-				<td>Ingrese el JSON:</td>
-				<td><h:inputTextarea></h:inputTextarea></td>
-				<td>Cadena:</td>
-				<td>#{orquestador.cadena2}</td>
-			</tr>
-			<tr>
-				<td><h:commandButton value="Procesar"></h:commandButton></td>
-			</tr>
-		</table>
 		
+		<h:inputText value="#{bean.jsonCad}"></h:inputText>
 		
+		#{bean.jsonCad}
+		
+		<h:commandButton value="Procesar"></h:commandButton>
 		
 	</h:form>
 	

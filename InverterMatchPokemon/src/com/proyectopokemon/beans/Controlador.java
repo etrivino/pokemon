@@ -3,11 +3,11 @@ package com.proyectopokemon.beans;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+@ManagedBean(name = "bean")
 @SessionScoped
-public class controlador {
+public class Controlador {
 	
-	private String jsonCad;
+	private String jsonCad = "qeweqweqweq";
 
 	public String getJsonCad() {
 		return jsonCad;
