@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
+<title>Analista torneos pokemon</title>
+</h:head>
+<h:body>
 	
 	<h1>Bienvenido JSF Etrivino</h1>
+	<h3>Obtener cantidad de pasos mínima</h3>
+	<h:form>
+		<table>
+			<tr>
+				<td>Ingrese el JSON:</td>
+				<td><h:inputTextarea></h:inputTextarea></td>
+				<td>Cadena:</td>
+				<td>#{orquestador.cadena2}</td>
+			</tr>
+			<tr>
+				<td><h:commandButton value="Procesar"></h:commandButton></td>
+			</tr>
+		</table>
+		
+		
+		
+	</h:form>
 	
-</body>
+</h:body>
 </html>
