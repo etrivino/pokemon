@@ -18,6 +18,13 @@ public class ProyectoPokemon {
 		controlador.obtenerPasos();
 		
 		System.out.println("\nCantidad mínima de movimientos: "+controlador.getCad());
+
+		controlador.setJsonCad("[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]");
+		
+		controlador.obtenerPasos();
+		
+		System.out.println("\nCantidad mínima de movimientos: "+controlador.getCad());
+		
 		
 	}
 

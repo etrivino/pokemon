@@ -20,7 +20,9 @@ public class ManejadorMySql implements IManejadorDatos {
 	// Variable de conexion
 	private Connection con;
 
-	// Constantes privadas de conexión
+	// Constantes privadas de conexión por cuestión de tiempo se dejaron quemadas
+	//y no se consultaron desde un archivo encriptado para no tener que recompilar
+	//cuando se cambien las credenciales o se despliegue en otro servidor
 	private final String driver = "com.mysql.cj.jdbc.Driver";
 	private final String user = "root";
 	private final String pass = "Clave1root";

@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Pokemon implements Serializable{
 
 	//Atributos básicos del pokemon
-	private int pokedexcodigo;
+	private int pokedexcodigo = 0;
 	private String nombre;
 	
 	//Cantidad de retos disponibles

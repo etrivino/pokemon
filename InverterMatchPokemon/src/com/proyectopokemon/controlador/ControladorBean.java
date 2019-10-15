@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.proyectopokemon.logicapokemon.accesoadatos.GestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.IGestorPokeinfo;
+import com.proyectopokemon.logicapokemon.accesoadatos.excepciones.ExcepcionPokemonNoExiste;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.AnalistaGeneral;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.IAnalistaTorneo;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
@@ -25,17 +26,11 @@ public class ControladorBean implements Serializable{
 		
 	}
 	
+	//Variables
+	//Se establece el caso básico para que salga cargado en pantalla
 	private String jsonCad = "[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]";
 	private String cad;
 	private int cantidadDePasos = 0;
-	
-	public String getJsonCad() {
-		return jsonCad;
-	}
-
-	public void setJsonCad(String jsonCad) {
-		this.jsonCad = jsonCad;
-	}
 	
 	public void obtenerPasos() {
 		
@@ -48,24 +43,32 @@ public class ControladorBean implements Serializable{
 		//Crea el torneo
 		TorneoPokemon torneoPokemon = new TorneoPokemon(stringArrAPokemonArr(lista));
 		
-		//Obtiene la información faltante de cada pokemon
 		IGestorPokeinfo gestorInfo = GestorPokeinfo.getInstance();
-		gestorInfo.obtenerPokeInfo(torneoPokemon.getGanadores());
-		
-		//Invoca al analista del torneo para que indique la cantidad de pasos
-		IAnalistaTorneo analista = AnalistaGeneral.getInstance();
-		
-		//Solicita la cantidad de pasos al analista
-		cantidadDePasos = analista.calcularMinimosMovimientos(torneoPokemon);
-		
-		//Establece el resultado
-		if(cantidadDePasos == -1)
-			cad = "El torneo ha sido saboteado!";
-		else
-			cad = cantidadDePasos+"";
-		
-		//Almacena el torneo en la base de datos
-		
+		try {
+			
+			//Obtiene la información faltante de cada pokemon
+			gestorInfo.obtenerPokeInfo(torneoPokemon.getGanadores());
+
+			//Invoca al analista del torneo para que indique la cantidad de pasos
+			IAnalistaTorneo analista = AnalistaGeneral.getInstance();
+			
+			//Solicita la cantidad de pasos al analista
+			cantidadDePasos = analista.calcularMinimosMovimientos(torneoPokemon);
+			
+			//Establece el resultado
+			if(cantidadDePasos == -1)
+				cad = "El torneo ha sido saboteado!";
+			else
+				cad = cantidadDePasos+"";
+			
+			//Almacena el torneo en la base de datos
+			
+			
+		} catch (ExcepcionPokemonNoExiste e) {
+			
+			cad = e.getMessage();
+			
+		}
 		
 	}
 	
@@ -85,6 +88,14 @@ public class ControladorBean implements Serializable{
 		
 	}
 
+	public String getJsonCad() {
+		return jsonCad;
+	}
+
+	public void setJsonCad(String jsonCad) {
+		this.jsonCad = jsonCad;
+	}
+	
 	public String getCad() {
 		return cad;
 	}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import com.proyectopokemon.logicapokemon.accesoadatos.excepciones.ExcepcionPokemonNoExiste;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.FabricaDeManejadores;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.IManejadorDatos;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorMySql;
@@ -42,7 +43,7 @@ public class GestorPokeinfo implements IGestorPokeinfo{
 		return gestorInfo;
 	}
 	
-	public void obtenerPokeInfo(List<Pokemon> pokemones) {
+	public void obtenerPokeInfo(List<Pokemon> pokemones) throws ExcepcionPokemonNoExiste {
 		
 		List<Pokemon> aConsultar = new ArrayList<Pokemon>();
 		
@@ -79,6 +80,7 @@ public class GestorPokeinfo implements IGestorPokeinfo{
 			
 			//Agrega los pokemones en memoria
 			for(Pokemon pokemon: aConsultar) {
+				
 				memoria.put(pokemon.getNombre(), pokemon);
 				
 				//Agrega la información faltante
@@ -88,6 +90,17 @@ public class GestorPokeinfo implements IGestorPokeinfo{
 					}
 				}
 				
+				
+			}
+			
+
+			//Verifica si algún pokemon no existe
+			for(Pokemon p: pokemones) {
+				System.out.println(p.getNombre()+": "+p.getPokedexcodigo());
+				
+				if(p.getPokedexcodigo() == 0) {
+					throw new ExcepcionPokemonNoExiste("El pokemon "+p.getNombre()+" no existe!");
+				}
 			}
 			
 		}

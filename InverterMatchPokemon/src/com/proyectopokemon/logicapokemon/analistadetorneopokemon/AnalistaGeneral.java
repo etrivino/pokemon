@@ -100,22 +100,6 @@ public class AnalistaGeneral implements IAnalistaTorneo{
 				
 			}
 			
-			//Verifica si se debe continuar iterando
-			/*for(int i=0; i<ganadores.size(); i++) {
-				
-				//Si el codigo del pokemon es mayor que el de su derecha y aún le quedan retos
-				if(	(i+1 < ganadores.size()) 
-					&& (ganadores.get(i).getPokedexcodigo() > ganadores.get(i+1).getPokedexcodigo())
-					&& (ganadores.get(i).getRetosDisponibles() > 0)
-					) {
-					
-					iterar = true;
-					break;
-					
-				}
-				
-			}*/
-			
 		}while(iterar);
 		
 		//Verifica si la lista quedó ordenada de menor a mayor número de pokedex
