@@ -6,7 +6,7 @@ package com.proyectopokemon.logicapokemon.clasespokemon;
 import java.io.Serializable;
 
 /**
- * @author EstebanTriviño
+ * @author EstebanTrivino
  *
  */
 public class Pokemon implements Serializable{

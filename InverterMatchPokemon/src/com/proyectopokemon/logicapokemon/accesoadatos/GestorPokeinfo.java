@@ -15,7 +15,7 @@ import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.Ti
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
 /**
- * @author EstebanTriviño
+ * @author EstebanTrivino
  *
  */
 public class GestorPokeinfo implements IGestorPokeinfo{

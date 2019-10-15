@@ -6,13 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
 
 import com.proyectopokemon.logicapokemon.clasespokemon.ComparadorPokemonNombre;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
 /**
- * @author EstebanTriviño
+ * @author EstebanTrivino
  *
  */
 public class ManejadorMySql implements IManejadorDatos {
@@ -103,6 +104,12 @@ public class ManejadorMySql implements IManejadorDatos {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public Hashtable<String, Pokemon> obtenerTodosLosPokemones() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

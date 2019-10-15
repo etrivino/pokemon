@@ -20,6 +20,10 @@ public class FabricaDeManejadores {
 			manejador = new ManejadorMySql();
 			break;
 			
+		case POKEAPI:
+			manejador = new ManejadorPokeApi();
+			break;
+			
 		default:
 			manejador = new ManejadorMySql();
 		}
