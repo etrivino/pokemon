@@ -2,8 +2,8 @@ package com.proyectopokemon.logicapokemon.analistadetorneopokemon;
 
 import java.util.List;
 
-import com.proyectopokemon.logicapokemon.pokemon.Pokemon;
-import com.proyectopokemon.logicapokemon.pokemon.TorneoPokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
 
 public class AnalistaGeneral implements IAnalistaTorneo{
 	

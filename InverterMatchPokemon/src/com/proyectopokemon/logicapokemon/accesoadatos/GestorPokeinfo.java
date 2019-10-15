@@ -11,13 +11,13 @@ import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.Fa
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.IManejadorDatos;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorMySql;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.TipoDeManejador;
-import com.proyectopokemon.logicapokemon.pokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
 /**
  * @author EstebanTriviño
  *
  */
-public class GestorPokeinfo{
+public class GestorPokeinfo implements IGestorPokeinfo{
 	
 	/*
 	 * Se utiliza el patrón Singleton para garantizar que solo se pueda acceder a la información de la base de datos a través
@@ -40,14 +40,6 @@ public class GestorPokeinfo{
 	//Método para acceder a la instancia
 	public static GestorPokeinfo getInstance() {
 		return gestorInfo;
-	}
-	
-	private void agregarPokemonesACache(List<Pokemon> pokemones) {
-		
-		//Realiza la consulta en la base de datos
-		
-		//Agrega la información obtenida a cache
-		
 	}
 	
 	public void obtenerPokeInfo(List<Pokemon> pokemones) {

@@ -11,11 +11,11 @@ import javax.faces.bean.SessionScoped;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.proyectopokemon.logicapokemon.accesoadatos.GestorPokeinfo;
-import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.IManejadorDatos;
+import com.proyectopokemon.logicapokemon.accesoadatos.IGestorPokeinfo;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.AnalistaGeneral;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.IAnalistaTorneo;
-import com.proyectopokemon.logicapokemon.pokemon.Pokemon;
-import com.proyectopokemon.logicapokemon.pokemon.TorneoPokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
 
 @ManagedBean(name = "controlador")
 @SessionScoped
@@ -37,11 +37,6 @@ public class ControladorBean implements Serializable{
 		this.jsonCad = jsonCad;
 	}
 	
-	public void prueba() {
-		cad = jsonCad;
-		
-	}
-	
 	public void obtenerPasos() {
 		
 		//Crea la lista de pokemones a partir del JSON
@@ -51,10 +46,10 @@ public class ControladorBean implements Serializable{
 		List<String> lista = gson.fromJson(jsonCad, tipo );
 		
 		//Crea el torneo
-		TorneoPokemon torneoPokemon = new TorneoPokemon(stringArrToPokemonArr(lista));
+		TorneoPokemon torneoPokemon = new TorneoPokemon(stringArrAPokemonArr(lista));
 		
 		//Obtiene la información faltante de cada pokemon
-		GestorPokeinfo gestorInfo = GestorPokeinfo.getInstance();
+		IGestorPokeinfo gestorInfo = GestorPokeinfo.getInstance();
 		gestorInfo.obtenerPokeInfo(torneoPokemon.getGanadores());
 		
 		//Invoca al analista del torneo para que indique la cantidad de pasos
@@ -74,7 +69,7 @@ public class ControladorBean implements Serializable{
 		
 	}
 	
-	private List<Pokemon> stringArrToPokemonArr(List<String> lista){
+	private List<Pokemon> stringArrAPokemonArr(List<String> lista){
 		
 		//Crea la lista a retornar
 		List<Pokemon> ganadores = new ArrayList<Pokemon>();
@@ -82,7 +77,7 @@ public class ControladorBean implements Serializable{
 		//Itera sobre la lista de String para añadir los pokemons a la lista
 		for(String nombre: lista) {
 			
-			ganadores.add(new Pokemon(nombre));
+			ganadores.add(new Pokemon(nombre.toLowerCase()));
 			
 		}
 		

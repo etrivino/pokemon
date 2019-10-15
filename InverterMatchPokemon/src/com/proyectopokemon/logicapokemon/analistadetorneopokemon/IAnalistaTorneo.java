@@ -1,6 +1,6 @@
 package com.proyectopokemon.logicapokemon.analistadetorneopokemon;
 
-import com.proyectopokemon.logicapokemon.pokemon.TorneoPokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
 
 public interface IAnalistaTorneo {
 	

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.proyectopokemon.logicapokemon.pokemon;
+package com.proyectopokemon.logicapokemon.clasespokemon;
 
 import java.io.Serializable;
 

@@ -1,4 +1,6 @@
-package com.proyectopokemon.logicapokemon.pokemon;
+package com.proyectopokemon.logicapokemon.clasespokemon;
+
+import java.util.Comparator;
 
 public class ComparadorPokemonNombre implements Comparator<Pokemon>{
 	@Override

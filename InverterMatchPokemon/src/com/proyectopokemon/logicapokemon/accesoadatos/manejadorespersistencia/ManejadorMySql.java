@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.Collections;
 import java.util.List;
 
-import com.proyectopokemon.logicapokemon.pokemon.ComparadorPokemonNombre;
-import com.proyectopokemon.logicapokemon.pokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.ComparadorPokemonNombre;
+import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
 /**
  * @author EstebanTriviño

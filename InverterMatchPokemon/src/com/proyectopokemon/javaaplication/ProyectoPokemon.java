@@ -13,7 +13,7 @@ public class ProyectoPokemon {
 		
 		ControladorBean controlador = new ControladorBean();
 
-		controlador.setJsonCad("[\"Pidgey\", \"Bulbasaur\", \"Charmander\", \"Squirtle\", \"Caterpie\" ]");
+		controlador.setJsonCad("[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]");
 		
 		controlador.obtenerPasos();
 		
