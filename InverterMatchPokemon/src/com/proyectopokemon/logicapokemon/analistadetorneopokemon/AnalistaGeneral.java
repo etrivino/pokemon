@@ -1,12 +1,32 @@
-package com.proyectopokemon.analistaDeTorneoPokemon;
+package com.proyectopokemon.logicapokemon.analistadetorneopokemon;
 
 import java.util.List;
 
-import com.proyectopokemon.pokemon.Pokemon;
-import com.proyectopokemon.pokemon.TorneoPokemon;
+import com.proyectopokemon.logicapokemon.pokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.pokemon.TorneoPokemon;
 
 public class AnalistaGeneral implements IAnalistaTorneo{
-
+	
+	/*
+	 * Se define un AnalistaGeneral implementando el patrón Singleton
+	 * con el fin de que haya solo un punto de acceso a este
+	 * en todo el sistema
+	 */
+	
+	//Se crea una instancia única de AnalistaGeneral para toda la sesion
+	private static IAnalistaTorneo analista = new AnalistaGeneral();
+	
+	//Se define el constructor privado
+	private AnalistaGeneral() {
+		
+	}
+	
+	//Se define el método a través del cual se puede acceder a la instancia
+	public static IAnalistaTorneo getInstance() {
+		return analista;
+	}
+	
+	//Métodos sobreescritos
 	@Override
 	public int calcularMinimosMovimientos(TorneoPokemon torneo) {
 		
@@ -25,7 +45,12 @@ public class AnalistaGeneral implements IAnalistaTorneo{
 		//teniendo en cuenta las reglas del juego
 		
 		//Se hace una copia de la lista de ganadores
-		List<Pokemon> ganadores = torneo.getParticipantes();
+		List<Pokemon> ganadores = torneo.getGanadores();
+
+		System.out.println("");
+		for(Pokemon p: ganadores) {
+			System.out.print(p.getPokedexcodigo()+" ");
+		}
 		
 		do {
 			
@@ -64,6 +89,12 @@ public class AnalistaGeneral implements IAnalistaTorneo{
 						iterar = true;
 						
 					}
+
+					System.out.println("");
+					for(Pokemon p: ganadores) {
+						System.out.print(p.getPokedexcodigo()+" ");
+					}
+					
 					
 				}
 				
@@ -90,7 +121,7 @@ public class AnalistaGeneral implements IAnalistaTorneo{
 		//Verifica si la lista quedó ordenada de menor a mayor número de pokedex
 		for(int i=0; i<ganadores.size(); i++) {
 			
-			//Si el codigo es menor al del pokemon de la derecha
+			//Si el codigo es mayor al del pokemon de la derecha
 			if(	(i+1 < ganadores.size()) 
 				&& (ganadores.get(i).getPokedexcodigo() > ganadores.get(i+1).getPokedexcodigo() )
 				) {

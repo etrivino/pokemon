@@ -13,13 +13,15 @@
 	<h3>Obtener cantidad de pasos mínima</h3>
 	<h:form>
 		
-		<h:inputText value="#{bean.jsonCad}"></h:inputText>
+		<h:inputTextarea value="#{controlador.jsonCad}"></h:inputTextarea>
 		
-		#{bean.jsonCad}
-		
-		<h:commandButton value="Procesar"></h:commandButton>
+		<h:commandButton value="Clic aqui!" action="#{controlador.obtenerPasos()}"></h:commandButton>
 		
 	</h:form>
+	
+	<p>
+		Cantidad mínima de movimientos: #{controlador.cad}
+	</p>
 	
 </h:body>
 </html>

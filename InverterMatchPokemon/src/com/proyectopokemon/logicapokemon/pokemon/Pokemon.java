@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.proyectopokemon.pokemon;
+package com.proyectopokemon.logicapokemon.pokemon;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ public class Pokemon implements Serializable{
 	private String nombre;
 	
 	//Cantidad de retos disponibles
-	private	int RetosDisponibles;
+	private	int RetosDisponibles = 2;
 	
 	//Constructores
 	public Pokemon() {
@@ -27,7 +27,6 @@ public class Pokemon implements Serializable{
 	public Pokemon(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.RetosDisponibles = 2;
 	}
 
 	public Pokemon(int pokedexcodigo, String nombre) {
