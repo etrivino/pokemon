@@ -27,6 +27,12 @@ public class ProyectoPokemon {
 		
 		System.out.println("\nCantidad mínima de movimientos: "+controlador.getCad());
 		
+		controlador.setPokemonABuscar("pikachu");
+		controlador.obtenerPokeInfoPorNombre();
+		
+		System.out.println(controlador.getListaPokemonActual().size());
+		
+		
 	}
 
 }

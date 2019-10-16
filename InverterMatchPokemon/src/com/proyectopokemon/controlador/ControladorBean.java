@@ -14,7 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.proyectopokemon.logicapokemon.accesoadatos.GestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.IGestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.excepciones.ExcepcionPokemonNoExiste;
-import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi.RespuestaInfoPokemon;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaInfoPokemon;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.AnalistaGeneral;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.IAnalistaTorneo;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
@@ -37,7 +37,7 @@ public class ControladorBean implements Serializable{
 	private String mensajeErrorNombre;
 	private int cantidadDePasos = 0;
 	private String pokemonABuscar;
-	private RespuestaInfoPokemon pokemonActual;
+	private List<RespuestaInfoPokemon> listaPokemonActual = new ArrayList<RespuestaInfoPokemon>();
 				
 	private List<TorneoPokemon> torneos = new ArrayList<TorneoPokemon>();
 
@@ -119,8 +119,16 @@ public class ControladorBean implements Serializable{
 	
 	public void obtenerPokeInfoPorNombre() {
 		
+		listaPokemonActual.clear();
 		
+		RespuestaInfoPokemon poke = new RespuestaInfoPokemon();
 		
+		poke.setName(pokemonABuscar.toLowerCase());
+		
+		IGestorPokeinfo gestorInfo = GestorPokeinfo.getInstance();
+		poke = gestorInfo.obtenerPokeInfoPorNombre(poke);
+		
+		listaPokemonActual.add(poke);
 	}
 
 	public String getJsonCad() {
@@ -177,12 +185,12 @@ public class ControladorBean implements Serializable{
 		this.pokemonABuscar = pokemonABuscar;
 	}
 
-	public RespuestaInfoPokemon getPokemonActual() {
-		return pokemonActual;
+	public List<RespuestaInfoPokemon> getListaPokemonActual() {
+		return listaPokemonActual;
 	}
 
-	public void setPokemonActual(RespuestaInfoPokemon pokemonActual) {
-		this.pokemonActual = pokemonActual;
+	public void setListaPokemonActual(List<RespuestaInfoPokemon> listaPokemonActual) {
+		this.listaPokemonActual = listaPokemonActual;
 	}
 	
 }

@@ -13,6 +13,7 @@ import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.IM
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorMySql;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorPokeApi;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.TipoDeManejador;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaInfoPokemon;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
 /**
@@ -113,8 +114,13 @@ public class GestorPokeinfo implements IGestorPokeinfo{
 		
 	}
 	
-	public void obtenerPokeInfoPorNombre(Pokemon pokemon) {
-		// TODO Auto-generated method stub
+	public RespuestaInfoPokemon obtenerPokeInfoPorNombre(RespuestaInfoPokemon pokemon) {
+		
+		IManejadorDatos manejador = FabricaDeManejadores.crearManejador(TipoDeManejador.POKEAPI);
+		
+		pokemon = manejador.obtenerPokeInfoPorNombre(pokemon);
+		
+		return pokemon;
 		
 	}
 	

@@ -9,8 +9,9 @@ import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi.RespuestaPokemon;
-import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi.RespuestaTodosLosPokemones;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaInfoPokemon;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaPokemon;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaTodosLosPokemones;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
 
@@ -18,13 +19,22 @@ public class ManejadorPokeApi implements IManejadorDatos{
 	
 	//Constantes privadas
 	private final String URL_TODOS_LOS_POKEMONES = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=2000";
+	private final String URL_POKEMONE = "https://pokeapi.co/api/v2/pokemon/";
 	private final String EXREGID = "https:\\/\\/pokeapi\\.co\\/api\\/v2\\/pokemon\\/([0-9]+)\\/";
 	
 	
 	@Override
-	public void obtenerPokeInfoPorNombre(Pokemon pokemon) {
-		// TODO Auto-generated method stub
+	public RespuestaInfoPokemon obtenerPokeInfoPorNombre(RespuestaInfoPokemon pokemon) {
 		
+		HttpResponse<String> response = null;
+		try {
+			response = Unirest.get(URL_POKEMONE+pokemon.getName()).asString();
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pokemon = new Gson().fromJson(response.getBody(), RespuestaInfoPokemon.class);
+		return pokemon;
 	}
 
 	@Override

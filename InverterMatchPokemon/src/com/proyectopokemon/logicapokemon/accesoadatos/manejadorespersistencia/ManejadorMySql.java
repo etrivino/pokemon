@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores.RespuestaInfoPokemon;
 import com.proyectopokemon.logicapokemon.clasespokemon.ComparadorPokemonNombre;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
@@ -52,8 +53,9 @@ public class ManejadorMySql implements IManejadorDatos {
 	}
 
 	@Override
-	public void obtenerPokeInfoPorNombre(Pokemon pokemon) {
-		//
+	public RespuestaInfoPokemon obtenerPokeInfoPorNombre(RespuestaInfoPokemon pokemon) {
+		
+		return null;
 	}
 
 	@Override

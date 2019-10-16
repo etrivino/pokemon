@@ -1,4 +1,4 @@
-package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi;
+package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores;
 
 public class Sprite {
 	

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi;
+package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores;
 
 /**
  * @author EstebanTrivino

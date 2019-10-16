@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi;
+package com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadores;
 
 import java.util.ArrayList;
 import java.util.List;
