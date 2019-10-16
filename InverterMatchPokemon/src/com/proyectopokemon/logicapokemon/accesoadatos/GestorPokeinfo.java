@@ -11,6 +11,7 @@ import com.proyectopokemon.logicapokemon.accesoadatos.excepciones.ExcepcionPokem
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.FabricaDeManejadores;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.IManejadorDatos;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorMySql;
+import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.ManejadorPokeApi;
 import com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia.TipoDeManejador;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
 
@@ -34,8 +35,13 @@ public class GestorPokeinfo implements IGestorPokeinfo{
 	
 	//Constructor privado
 	private GestorPokeinfo() {
-		// TODO Auto-generated constructor stub
-		//memoria.put("Bulbasaur", new Pokemon(1, "Bulbasaur"));
+		//Carga la información de todos los pokemones a través del api
+		cargarPokemonesConAPI();
+	}
+	
+	private void cargarPokemonesConAPI() {
+		IManejadorDatos manejador = FabricaDeManejadores.crearManejador(TipoDeManejador.POKEAPI);
+		memoria = manejador.obtenerTodosLosPokemones();
 	}
 	
 	//Método para acceder a la instancia

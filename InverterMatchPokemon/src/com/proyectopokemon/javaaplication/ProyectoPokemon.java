@@ -21,23 +21,12 @@ public class ProyectoPokemon {
 		
 		ControladorBean controlador = new ControladorBean();
 
-		/*controlador.setJsonCad("[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]");
-		
-		controlador.obtenerPasos();
-		
-		System.out.println("\nCantidad mínima de movimientos: "+controlador.getCad());
-
 		controlador.setJsonCad("[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]");
 		
 		controlador.obtenerPasos();
 		
 		System.out.println("\nCantidad mínima de movimientos: "+controlador.getCad());
-		*/
 		
-		IManejadorDatos manejadorDatos = FabricaDeManejadores.crearManejador(TipoDeManejador.POKEAPI);
-		
-		manejadorDatos.obtenerTodosLosPokemones();
-
 	}
 
 }

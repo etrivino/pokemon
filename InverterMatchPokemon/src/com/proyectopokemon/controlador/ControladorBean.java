@@ -7,8 +7,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
+import javax.faces.event.AjaxBehaviorEvent;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.proyectopokemon.logicapokemon.accesoadatos.GestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.IGestorPokeinfo;
@@ -29,9 +30,27 @@ public class ControladorBean implements Serializable{
 	//Variables
 	//Se establece el caso básico para que salga cargado en pantalla
 	private String jsonCad = "[ \"Squirtle\", \"Bulbasaur\", \"Charmander\", \"Caterpie\", \"Pidgey\" ]";
+	private String nombreTorneo;
 	private String cad;
+	private String mensajeDeError;
+	private String mensajeErrorNombre;
 	private int cantidadDePasos = 0;
-	
+	private String pokemonABuscar;
+				
+	private List<TorneoPokemon> torneos = new ArrayList<TorneoPokemon>();
+
+    public void validarNombreTorneo(AjaxBehaviorEvent evento) {
+        if (nombreTorneo.length() < 4) {
+            setMensajeErrorNombre("El nombre tiene que tener como minimo 4 caracteres");
+        } else {
+            if (nombreTorneo.length() > 10) {
+                setMensajeErrorNombre("El nombre puede tener como maximo 10 caracteres");
+            } else {
+                setMensajeErrorNombre("");
+            }
+        }
+    }
+    
 	public void obtenerPasos() {
 		
 		//Crea la lista de pokemones a partir del JSON
@@ -39,9 +58,16 @@ public class ControladorBean implements Serializable{
 		
 		Type tipo = new TypeToken<List<String>>(){}.getType();
 		List<String> lista = gson.fromJson(jsonCad, tipo );
+		if(lista.size() == 0) {
+			mensajeDeError = "Por favor verifique el JSON!";
+			cad = "Por favor verifique el JSON!";
+			cantidadDePasos = 0;
+			return;
+		}
 		
 		//Crea el torneo
 		TorneoPokemon torneoPokemon = new TorneoPokemon(stringArrAPokemonArr(lista));
+		torneoPokemon.setNombre(nombreTorneo);
 		
 		IGestorPokeinfo gestorInfo = GestorPokeinfo.getInstance();
 		try {
@@ -51,7 +77,7 @@ public class ControladorBean implements Serializable{
 
 			//Invoca al analista del torneo para que indique la cantidad de pasos
 			IAnalistaTorneo analista = AnalistaGeneral.getInstance();
-			
+			cantidadDePasos=0;
 			//Solicita la cantidad de pasos al analista
 			cantidadDePasos = analista.calcularMinimosMovimientos(torneoPokemon);
 			
@@ -62,7 +88,8 @@ public class ControladorBean implements Serializable{
 				cad = cantidadDePasos+"";
 			
 			//Almacena el torneo en la base de datos
-			
+			torneoPokemon.setMovimientos(cantidadDePasos);
+			torneos.add(torneoPokemon);
 			
 		} catch (ExcepcionPokemonNoExiste e) {
 			
@@ -102,6 +129,44 @@ public class ControladorBean implements Serializable{
 
 	public void setCad(String cad) {
 		this.cad = cad;
+	}
+
+	public String getNombreTorneo() {
+		return nombreTorneo;
+	}
+
+	public void setNombreTorneo(String nombreTorneo) {
+		this.nombreTorneo = nombreTorneo;
+	}
+	public String getMensajeErrorNombre() {
+		return mensajeErrorNombre;
+	}
+	public void setMensajeErrorNombre(String mensajeErrorNombre) {
+		this.mensajeErrorNombre = mensajeErrorNombre;
+	}
+
+	public List<TorneoPokemon> getTorneos() {
+		return torneos;
+	}
+
+	public void setTorneos(List<TorneoPokemon> torneos) {
+		this.torneos = torneos;
+	}
+
+	public String getMensajeDeError() {
+		return mensajeDeError;
+	}
+
+	public void setMensajeDeError(String mensajeDeError) {
+		this.mensajeDeError = mensajeDeError;
+	}
+
+	public String getPokemonABuscar() {
+		return pokemonABuscar;
+	}
+
+	public void setPokemonABuscar(String pokemonABuscar) {
+		this.pokemonABuscar = pokemonABuscar;
 	}
 	
 }

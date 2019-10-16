@@ -2,6 +2,7 @@ package com.proyectopokemon.logicapokemon.accesoadatos.manejadorespersistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import com.proyectopokemon.logicapokemon.clasespokemon.ComparadorPokemonNombre;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
+import com.proyectopokemon.logicapokemon.clasespokemon.TorneoPokemon;
 
 /**
  * @author EstebanTrivino
@@ -51,10 +53,7 @@ public class ManejadorMySql implements IManejadorDatos {
 
 	@Override
 	public void obtenerPokeInfoPorNombre(Pokemon pokemon) {
-		
-		//Se conecta a la base de datos
-		conectarBD();
-
+		//
 	}
 
 	@Override
@@ -110,6 +109,50 @@ public class ManejadorMySql implements IManejadorDatos {
 	public Hashtable<String, Pokemon> obtenerTodosLosPokemones() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void guardarTorneo(TorneoPokemon torneo) {
+		
+
+		//Realiza la insersión en la base de datos
+		try {
+
+			//Se conecta a la base de datos
+			conectarBD();
+			
+			con.setAutoCommit(false);
+			
+			//Crea la onsulta
+			String consulta = "insert into torneos (descrpcion) values (?)";
+			
+			//Prepara la sentencia
+			PreparedStatement preparedStmt = con.prepareStatement(consulta);
+			
+			//Añade los valores a la sentencia
+		     preparedStmt.setString (1, torneo.getNombre());
+		     
+		     //Se ejecuta el insert
+		     preparedStmt.execute();
+		     
+		     //Asienta la transacción
+		     con.commit();
+		     
+		     //Se cierra la conexión
+		     con.close();
+			
+		}catch (Exception e) {
+			try {
+				//Se deshacen los cambios
+				con.rollback();
+				//Se cierra la conexión
+			    con.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
 	}
 
 }

@@ -1,27 +1,133 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Analista torneos pokemon</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Analista torneos pokemon</title>
 </h:head>
 <h:body>
-	
+
 	<h1>Bienvenido JSF Etrivino</h1>
-	<h3>Obtener cantidad de pasos mínima</h3>
-	<h:form>
-		
-		<h:inputTextarea value="#{controlador.jsonCad}"></h:inputTextarea>
-		<br></br>
-		<h:commandButton value="Clic aqui!" action="#{controlador.obtenerPasos()}"></h:commandButton>
-		
-	</h:form>
-	
-	<p>
-		Cantidad mínima de movimientos: #{controlador.cad}
-	</p>
-	
+	<p:panel id="ventana-pricipal">
+		<div class="ui-g ui-fluid">
+			<div class="ui-g-12 ui-md-5">
+				<h:form id="formulario-torneo">
+					<p:growl id="growl" value="#{controlador.mensajeDeError}"
+						life="2000" />
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<h3>Obtener cantidad mínima de pasos</h3>
+							<p:inputText placeholder="Nombre del torneo" id="nombre"
+								value="#{controlador.nombreTorneo}" required="true"
+								validatorMessage="Ingrese el nombre del torneo">
+								<f:ajax event="keyup" render="mensaje-nombre"
+									listener="#{controlador.validarNombreTorneo}" />
+							</p:inputText>
+						</div>
+					</div>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<p:inputTextarea cols="70" rows="10"
+								value="#{controlador.jsonCad}"></p:inputTextarea>
+							<h:outputText id="mensaje-nombre" class="mensaje-error"
+								value="#{controlador.mensajeErrorNombre}" />
+
+						</div>
+					</div>
+
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<p:commandButton update="ventana-pricipal"
+								value="Calcular torneo" action="#{controlador.obtenerPasos}"
+								styleClass="ui-priority-primary"></p:commandButton>
+						</div>
+					</div>
+				</h:form>
+
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-md-12">
+
+						<h3>
+							<h:outputText id="cantidad-de-movimientos"
+								value="Cantidad mínima de movimientos: #{controlador.cad}"></h:outputText>
+						</h3>
+
+						<p:dataTable var="torneo" value="#{controlador.torneos}">
+							<p:column headerText="Nombre del torneo">
+								<h:outputText value="#{torneo.nombre}" />
+							</p:column>
+							<p:column headerText="Cantidad de movimientos">
+								<h:outputText value="#{torneo.movimientos}" />
+							</p:column>
+							<p:column headerText="Participantes">
+								<h:outputText value="#{torneo.ganadores}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+			
+			<div class="ui-g-12 ui-md-1">
+			</div>
+			
+			<div class="ui-g-12 ui-md-5">
+				<h:form id="formulario-consulta">
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<h3>Consultar información del pokemon:</h3>
+							<p:inputText placeholder="Nombre del pokemon" id="nombre"
+								value="#{controlador.pokemonABuscar}" required="true">
+							</p:inputText>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</p:panel>
 </h:body>
+<style type="text/css">
+.white-button.ui-button.ui-state-default {
+	background-color: #ffffff;
+	color: #222222;
+	border-color: #d6d6d6;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-color: var(- -input-border-color, #d6d6d6);
+}
+
+.white-button.ui-button.ui-state-default:enabled:hover, .white-button.ui-button.ui-state-default:focus
+	{
+	background-color: #f2f2f2;
+	border-color: #ccc;
+	color: #373a3c;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-color: var(- -input-hover-border-color, #ccc);
+}
+
+.green-button.ui-button.ui-state-default {
+	background-color: #5cb85c;
+	border-color: #5cb85c;
+	color: #fff;
+}
+
+.green-button.ui-button.ui-state-default:enabled:hover, .green-button.ui-button.ui-state-default:focus
+	{
+	background-color: #4cae4c;
+	border-color: #5cb85c;
+}
+
+.red-button.ui-button.ui-state-default {
+	background-color: #d9534f;
+	border-color: #d9534f;
+	color: #fff;
+}
+
+.red-button.ui-button.ui-state-default:enabled:hover, .red-button.ui-button.ui-state-default:focus
+	{
+	background-color: #d43f3a;
+	border-color: #d9534f;
+}
+</style>
 </html>
