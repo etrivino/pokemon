@@ -73,7 +73,38 @@
 			<div class="ui-g-12 ui-md-1"></div>
 
 			<div class="ui-g-12 ui-md-5">
-				
+				<h:form id="formulario-consulta">
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<h3>Consultar información del pokemon:</h3>
+							<p:inputText placeholder="Nombre del pokemon" id="nombre"
+								value="#{controlador.pokemonABuscar}" required="true">
+							</p:inputText>
+						</div>
+					</div>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12 ui-md-12">
+							<p:commandButton update="ventana-pricipal" value="Buscar"
+								action="#{controlador.obtenerPokeInfoPorNombre}"
+								styleClass="ui-priority-primary"></p:commandButton>
+						</div>
+
+					</div>
+					<div class="ui-g-12 ui-md-12">
+						<p:dataTable var="pokemon"
+							value="#{controlador.listaPokemonActual}">
+							<p:column headerText="Nombre">
+								<h:outputText value="#{pokemon.name}" />
+							</p:column>
+							<p:column headerText="Id">
+								<h:outputText value="#{pokemon.id}" />
+							</p:column>
+							<p:column headerText="Peso">
+								<h:outputText value="#{pokemon.height}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</h:form>
 			</div>
 		</div>
 	</p:panel>
