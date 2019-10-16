@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.proyectopokemon.logicapokemon.accesoadatos.GestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.IGestorPokeinfo;
 import com.proyectopokemon.logicapokemon.accesoadatos.excepciones.ExcepcionPokemonNoExiste;
+import com.proyectopokemon.logicapokemon.accesoadatos.modelosmanejadorpokeapi.RespuestaInfoPokemon;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.AnalistaGeneral;
 import com.proyectopokemon.logicapokemon.analistadetorneopokemon.IAnalistaTorneo;
 import com.proyectopokemon.logicapokemon.clasespokemon.Pokemon;
@@ -36,6 +37,7 @@ public class ControladorBean implements Serializable{
 	private String mensajeErrorNombre;
 	private int cantidadDePasos = 0;
 	private String pokemonABuscar;
+	private RespuestaInfoPokemon pokemonActual;
 				
 	private List<TorneoPokemon> torneos = new ArrayList<TorneoPokemon>();
 
@@ -114,6 +116,12 @@ public class ControladorBean implements Serializable{
 		return ganadores;
 		
 	}
+	
+	public void obtenerPokeInfoPorNombre() {
+		
+		
+		
+	}
 
 	public String getJsonCad() {
 		return jsonCad;
@@ -167,6 +175,14 @@ public class ControladorBean implements Serializable{
 
 	public void setPokemonABuscar(String pokemonABuscar) {
 		this.pokemonABuscar = pokemonABuscar;
+	}
+
+	public RespuestaInfoPokemon getPokemonActual() {
+		return pokemonActual;
+	}
+
+	public void setPokemonActual(RespuestaInfoPokemon pokemonActual) {
+		this.pokemonActual = pokemonActual;
 	}
 	
 }
